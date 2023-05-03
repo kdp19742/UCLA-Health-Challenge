@@ -44,6 +44,10 @@ resource "aws_iam_role" "lab1_lambda_function_role" {
       },
     ]
   })
+  tags = {
+    Name        = "lab1-lambda-function-role"
+    Environment = "Dev"
+  }
 }
 
 resource "aws_iam_role_policy" "lab1_lambda_function_role_policy" {
@@ -66,6 +70,10 @@ resource "aws_lambda_function" "lab1_lambda_function" {
     variables = {
       S3_BUCKET = aws_s3_bucket.lab1_s3_bucket.id
     }
+  }
+  tags = {
+    Name        = "lab1-lambda-function"
+    Environment = "Dev"
   }
 }
 
