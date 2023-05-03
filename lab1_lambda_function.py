@@ -20,12 +20,11 @@ def lambda_handler(event, context):
         # Submit the Batch job
         try:
             submit_job_response = batch_client.submit_job(
-                jobName='my-batch-job',
-                jobQueue='lab1-queue',
-                jobDefinition='lab1-def:8',
-                parameters={
-                    'input': input_data
-                }
+                jobName=input_data['jobName'],
+                jobQueue=input_data['jobQueue'],
+                jobDefinition=input_data['jobDefinition'],
+                containerOverrides=input_data['containerOverrides'],
+                retryStrategy=input_data['retryStrategy']
             )
         except Exception as e:
             raise e
