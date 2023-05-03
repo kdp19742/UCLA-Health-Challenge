@@ -1,5 +1,6 @@
-import json
 import boto3
+import json
+
 
 def lambda_handler(event, context):
     s3_resource = boto3.resource('s3')
@@ -7,7 +8,6 @@ def lambda_handler(event, context):
 
     object_key = event['Records'][0]['s3']['object']['key'] 
     if object_key == 'input.json':
-        # Get the bucket and key from the S3 event
         bucket_name = event['Records'][0]['s3']['bucket']['name']
         
         # Read the input.json file from S3
@@ -36,3 +36,4 @@ def lambda_handler(event, context):
         }
     else:
         print("Another file with a .json suffix notified this lambda, doing nothing.")
+        
